@@ -30,10 +30,23 @@
 
 class RingBuffer:
     def __init__(self, capacity):
-        pass
+        self.capacity = capacity
+        self.queue = []
+        self.index = 0
+        
 
     def append(self, item):
-        pass
+        # if the queue is not full, we just need to append the item.
+        if len(self.queue) < self.capacity:
+            self.queue.append(item)
+        else:  # if the queue is full, append the new item to the item at current index, which is the oldest item in the queue
+            self.queue[self.index] = item
 
+        # current position will not exceed capacity
+        if self.index + 1 == self.capacity:
+            self.index = 0
+        else: 
+            self.index += 1
+        
     def get(self):
-        pass
+        return self.queue
