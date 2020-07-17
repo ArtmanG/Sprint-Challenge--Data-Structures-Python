@@ -16,11 +16,11 @@ from bst import BSTNode
 start_time = time.time()
 
 f = open('names_1.txt', 'r')
-names_1 = f.read().split("\n")  # List containing 10000 names
+names_1 = f.read().split("\n")  # List containing 10,000 names
 f.close()
 
 f = open('names_2.txt', 'r')
-names_2 = f.read().split("\n")  # List containing 10000 names
+names_2 = f.read().split("\n")  # List containing 10,000 names
 f.close()
 
 duplicates = []  # Return the list of duplicates in this data structure
@@ -31,11 +31,15 @@ duplicates = []  # Return the list of duplicates in this data structure
 #         if name_1 == name_2:
 #             duplicates.append(name_1)
 
+
+# [0] so that we can compare a string "name" to not the whole list, but the names on the list 
 bst = BSTNode(names_1[0]) 
 
-for name in names_1[1:]:
+# insert the list of names into a BST
+for name in names_1:
     bst.insert(name)
 
+# Check the names on the second list against the first list. Add all duplicates to the duplicates list
 for name in names_2:
     if bst.contains(name):
         duplicates.append(name)
